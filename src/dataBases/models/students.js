@@ -71,4 +71,14 @@ const getAllActiveStudentDetails = async () => {
     console.log(result);
     return result.rows;
 }
-module.exports = {createStudent, getStudentByAadhar, updateStudentDetails, deleteStudentDetails, getAllActiveStudentDetails};
+
+const getAllActiveStudentDetailsByClassAndSection = async (class_name,section) => {
+  console.log(class_name,section);
+  const query = `
+  SELECT id,student_name FROM students WHERE status = 'active' AND  class_name = $1 AND section = $2
+  `
+  const result = await db.query(query,[class_name,section]);
+  console.log(result);
+  return result.rows;
+}
+module.exports = {createStudent, getStudentByAadhar, updateStudentDetails, deleteStudentDetails, getAllActiveStudentDetails,getAllActiveStudentDetailsByClassAndSection};

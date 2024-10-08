@@ -56,7 +56,7 @@ router.get('/', async (req,res) =>{
        const getAllStudents = await getAllActiveStudentDetails();
        res.status(201).json({getAllStudents});
     } catch (err){
-   
+      res.status(500).json({error: 'Server error'});
     }
 });
 
